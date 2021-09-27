@@ -1,13 +1,15 @@
 package org.taibai.hellohei.event;
 
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.taibai.hellohei.constant.Constant;
-import org.taibai.hellohei.img.ResourceGetter;
-import org.taibai.hellohei.ui.Action;
+import org.taibai.hellohei.menu.ContextMenu;
 import org.taibai.hellohei.ui.ActionExecutor;
-import org.taibai.hellohei.ui.ActionGenerator;
+
+import static javafx.scene.input.MouseButton.PRIMARY;
+import static javafx.scene.input.MouseButton.SECONDARY;
 
 /**
  * <p>Creation Time: 2021-09-22 12:50:52</p>
@@ -34,9 +36,10 @@ public class GlobalEventListener {
         this.stage = stage;
         this.imageView = imageView;
         this.anchorPane = anchorPane;
-        this.actionExecutor = ActionExecutor.newInstance(imageView);
+        this.actionExecutor = ActionExecutor.getInstance();
         enableDrag();
         enableClick();
+        enableContextMenu();
     }
 
     /**
@@ -58,12 +61,29 @@ public class GlobalEventListener {
      */
     private void enableClick() {
         imageView.setOnMousePressed(e -> {
-            preScreenX = e.getScreenX();
-            preScreenY = e.getScreenY();
+            if (e.getButton() == PRIMARY) {
+                preScreenX = e.getScreenX();
+                preScreenY = e.getScreenY();
+            }
         });
         imageView.setOnMouseReleased(e -> {
-            if (e.getScreenX() == preScreenX && e.getScreenY() == preScreenY) {
-                actionExecutor.executeClickAction();
+            if (e.getButton() == PRIMARY) {
+                if (e.getScreenX() == preScreenX && e.getScreenY() == preScreenY) {
+                    actionExecutor.executeClickAction();
+                }
+            }
+        });
+    }
+
+    /**
+     * 右键点击小黑，开启右键菜单
+     */
+    private void enableContextMenu() {
+        imageView.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            if (e.getButton() == SECONDARY) {
+                Node node = e.getPickResult().getIntersectedNode();
+                //给node对象添加下来菜单；
+                ContextMenu.getInstance().show(node, e.getScreenX(), e.getScreenY());
             }
         });
     }

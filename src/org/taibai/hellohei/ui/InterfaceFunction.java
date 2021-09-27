@@ -29,17 +29,16 @@ import java.util.Random;
  */
 public class InterfaceFunction {
 
-    private final ImageView imageView;
-    private final ActionExecutor actionExecutor;
-    private final Stage stage;
+    private static InterfaceFunction interfaceFunction;
+
+    private final ImageView imageView = MainNode.getInstance().getImageView();
+    private final ActionExecutor actionExecutor = ActionExecutor.getInstance();
+    private final Stage stage = MainNode.getInstance().getStage();
     private VBox messageBox;
     private CheckboxMenuItem itemSay = new CheckboxMenuItem("碎碎念");
     private final String greet = "好久不见鸭，想你了~";
 
-    public InterfaceFunction(Stage stage, ImageView imageView) {
-        this.stage = stage;
-        this.imageView = imageView;
-        this.actionExecutor = ActionExecutor.newInstance(imageView);
+    private InterfaceFunction() {
         this.messageBox = new VBox();
         initMessage();
         say(greet, 8);
@@ -48,12 +47,17 @@ public class InterfaceFunction {
         new Thread(randomEvent).start();
     }
 
+    public static InterfaceFunction getInstance() {
+        if (interfaceFunction == null) interfaceFunction = new InterfaceFunction();
+        return interfaceFunction;
+    }
+
     /**
      * 初始化消息框
      */
     private void initMessage() {
         Label bubble = new Label();
-        //设置气泡的宽度。如果没有这句，就会根据内容多少来自适应宽度
+        // 设置气泡的宽度。如果没有这句，就会根据内容多少来自适应宽度
         bubble.setPrefWidth(100);
         bubble.setWrapText(true);   //自动换行
         bubble.setStyle("-fx-background-color: rgba(255,255,255,0.7); -fx-background-radius: 8px;");
@@ -68,7 +72,7 @@ public class InterfaceFunction {
         messageBox.getChildren().addAll(bubble, triangle);
         messageBox.setAlignment(Pos.BOTTOM_CENTER);
         messageBox.setStyle("-fx-background:transparent;");
-        //设置相对于父容器的位置
+        // 设置相对于父容器的位置
         messageBox.setLayoutX(0);
         messageBox.setLayoutY(0);
         messageBox.setVisible(true);

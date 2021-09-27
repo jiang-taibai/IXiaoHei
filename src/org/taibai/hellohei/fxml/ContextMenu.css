@@ -1,0 +1,14 @@
+#bg {
+    /*-fx-background-image: url("../img/contextMenuBackground.png");*/
+
+}
+
+.button {
+    -fx-background-insets: 0;
+    -fx-background-color: #7FB285;
+    -fx-text-fill: #ffffff;
+}
+
+.button:pressed {
+    -fx-background-color: #698B69;
+}

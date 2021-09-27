@@ -18,7 +18,7 @@ public class ResourceGetter {
     private static final Map<String, Image> images = new WeakHashMap<>();
     private static ResourceGetter singleton;
 
-    public static ResourceGetter newInstance() {
+    public static ResourceGetter getInstance() {
         if (singleton == null) singleton = new ResourceGetter();
         return singleton;
     }

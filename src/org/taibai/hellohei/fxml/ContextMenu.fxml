@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="bg" prefHeight="338.0" prefWidth="138.0"
+            style="-fx-background-color: rgba(255, 255, 255, 0.8); -fx-background-radius: 10px; -fx-border-radius: 10px;"
+            stylesheets="@ContextMenu.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.taibai.hellohei.controller.ContextMenuController">
+    <children>
+        <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#eat" prefHeight="23.0"
+                prefWidth="110.0" stylesheets="@ContextMenu.css" text="喂食"/>
+        <Button layoutX="13.0" layoutY="45.0" mnemonicParsing="false" onAction="#bath" prefHeight="23.0"
+                prefWidth="110.0" text="洗澡"/>
+        <Button layoutX="13.0" layoutY="77.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="看病"/>
+        <Button layoutX="13.0" layoutY="108.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="睡觉"/>
+        <Button layoutX="13.0" layoutY="139.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="打工"/>
+        <Button layoutX="13.0" layoutY="173.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="商城"/>
+        <Button layoutX="13.0" layoutY="205.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="学习"/>
+        <Button layoutX="13.0" layoutY="236.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="状态"/>
+        <Button layoutX="13.0" layoutY="267.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="隐藏"/>
+        <Button layoutX="14.0" layoutY="301.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="110.0" text="退出"/>
+    </children>
+</AnchorPane>

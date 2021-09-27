@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import org.taibai.hellohei.constant.Constant;
 import org.taibai.hellohei.img.ResourceGetter;
+import org.taibai.hellohei.state.TotalState;
 
 /**
  * <p>Creation Time: 2021-09-22 11:49:12</p>
@@ -16,20 +17,19 @@ import org.taibai.hellohei.img.ResourceGetter;
  */
 public class ActionExecutor {
 
-    private ImageView imageView;
+    private final ImageView imageView = MainNode.getInstance().getImageView();
     private Action curAction;
-    private final ResourceGetter resourceGetter = ResourceGetter.newInstance();
+    private final ResourceGetter resourceGetter = ResourceGetter.getInstance();
     private final ActionGenerator actionGenerator = new ActionGenerator();
     private static ActionExecutor actionExecutor;
     private Timeline timeline;
 
-    public static ActionExecutor newInstance(ImageView imageView) {
-        if (actionExecutor == null) actionExecutor = new ActionExecutor(imageView);
+    public static ActionExecutor getInstance() {
+        if (actionExecutor == null) actionExecutor = new ActionExecutor();
         return actionExecutor;
     }
 
-    private ActionExecutor(ImageView imageView) {
-        this.imageView = imageView;
+    private ActionExecutor() {
     }
 
     public boolean execute(Action action) {
@@ -54,6 +54,8 @@ public class ActionExecutor {
                     actionGenerator.getActionPath(),
                     Constant.UserInterface.ActionRunTime,
                     Constant.ImageShow.mainImage));
+            // 同时会增加心情值
+            TotalState.getInstance().getEmotionState().increase();
         }
         return ok;
     }

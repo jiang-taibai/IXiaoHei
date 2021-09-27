@@ -1,5 +1,11 @@
-# IXiaoHei
-桌面宠物——罗小黑
+# 项目名称
+IXiaoHei桌面宠物——罗小黑
+
+# 开发环境
+IDE：IDEA
+
+OS: Windows11
+
 # 运行环境
 运行环境Java8
 
